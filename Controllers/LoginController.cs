@@ -8,7 +8,15 @@ namespace ProjektZawody.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            UserModel user = new UserModel();
+            // Inicjalizuj user.UserName i user.Password
+
+            /* UserDAO userDAO = new UserDAO();
+             string userRole = userDAO.GetUserRole(user);
+
+             user.Role = userRole;*/
+
+            return View(user);
         }
 
         public IActionResult ProcessLogin(UserModel userModel) 

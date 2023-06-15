@@ -10968,19 +10968,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Dorotka\\.nuget\\packages\\": {}
+    "C:\\Users\\justy\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dorotka\\Desktop\\ProjektZawody\\ProjektZawody.csproj",
+      "projectUniqueName": "C:\\Users\\justy\\Source\\Repos\\NoweZawodySportowe\\ProjektZawody.csproj",
       "projectName": "ProjektZawody",
-      "projectPath": "C:\\Users\\Dorotka\\Desktop\\ProjektZawody\\ProjektZawody.csproj",
-      "packagesPath": "C:\\Users\\Dorotka\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dorotka\\Desktop\\ProjektZawody\\obj\\",
+      "projectPath": "C:\\Users\\justy\\Source\\Repos\\NoweZawodySportowe\\ProjektZawody.csproj",
+      "packagesPath": "C:\\Users\\justy\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\justy\\Source\\Repos\\NoweZawodySportowe\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Dorotka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\justy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10988,6 +10993,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
