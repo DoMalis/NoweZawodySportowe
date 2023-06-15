@@ -1,0 +1,36 @@
+﻿@model List<Competition>
+
+@{
+    ViewData["Title"] = "Join Competition";
+
+}
+@ViewBag.playerId
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Dołącz do zawodów</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+
+                <form asp-action="JoinCompetition">
+                    <div class="form-group">
+                        <label>Wybierz zawody:</label>
+                        <select class="form-control" name="competitionId">
+                            <option value="">-- Wybierz zawody --</option>
+                            @foreach (var competition in Model)
+                            {
+                                <option value="@competition.Id">@competition.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <input type="hidden" name="playerId" value="@ViewBag.playerId" />
+
+                    <input type="submit" value="Potwierdź" class="btn btn-danger" />
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

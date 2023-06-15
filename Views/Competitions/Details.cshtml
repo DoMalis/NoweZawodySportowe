@@ -1,0 +1,75 @@
+﻿@model Competition
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Szczegóły</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" readonly />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="MinAge" class="control-label"></label>
+                    <input asp-for="MinAge" class="form-control" readonly />
+                    <span asp-validation-for="MinAge" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="MaxAge" class="control-label"></label>
+                    <input asp-for="MaxAge" class="form-control" readonly />
+                    <span asp-validation-for="MaxAge" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-outline-secondary" asp-action="Index">Powrót</a>
+                </div>
+                @if (Model.CompetitionStatus == ProjektZawody.Data.Enums.CompetitionStatus.Notstarted)
+                {
+                    <a class="btn btn-outline-secondary" asp-action="Start" asp-route-id="@Model.Id">Rozpocznij zawody</a>
+                }
+                @if (Model.CompetitionStatus == ProjektZawody.Data.Enums.CompetitionStatus.InProgress)
+                {
+                    <a class="btn btn-outline-secondary" asp-action="Finish" asp-route-id="@Model.Id">Zakończ zawody</a>
+                }
+
+                <table>
+                    <thead>
+                        <tr>
+
+                            <th>@Html.DisplayNameFor(model=>model.Scores.First().Player.FirstName)</th>
+                            <th>@Html.DisplayNameFor(model=>model.Scores.First().Player.LastName)</th>
+                            <th>@Html.DisplayNameFor(model=>model.Scores.First().Points)</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        @if (Model.Scores != null && Model.Scores.Any())
+                        {
+                            @foreach (var score in Model.Scores)
+                            {
+                                <tr>
+                                    <td>@score.Player.FirstName</td>
+                                    <td>@score.Player.LastName</td>
+                                    <td>@score.Points</td>
+                                </tr>
+                            }
+
+                        }
+                    </tbody>
+                   
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

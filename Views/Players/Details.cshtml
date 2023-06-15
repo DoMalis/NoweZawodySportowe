@@ -1,0 +1,82 @@
+﻿@model Player
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Szczegóły</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+
+                <div class="form-group">
+                    <label asp-for="FirstName" class="control-label"></label>
+                    <input asp-for="FirstName" class="form-control" readonly />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="LastName" class="control-label"></label>
+                    <input asp-for="LastName" class="form-control" readonly />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Age" class="control-label"></label>
+                    <input asp-for="Age" class="form-control" readonly />
+                    <span asp-validation-for="Age" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-outline-secondary" asp-action="Index">Powrót</a>
+                </div>
+<p>Zawody: </p> 
+
+
+
+                    @if (Model.Scores != null && Model.Scores.Any())
+                    {
+                    <table>
+                        <thead>
+                            <tr>
+
+                                <th>@Html.DisplayNameFor(model=>model.Scores.First().Competition.Name)</th>
+                                <th>@Html.DisplayNameFor(model=>model.Scores.First().Points)</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            @foreach (var score in Model.Scores)
+                            {
+                                <tr>
+                                    <td>@score.Competition.Name</td>
+                                    @if (@score.Competition.CompetitionStatus == ProjektZawody.Data.Enums.CompetitionStatus.Notstarted || @score.Competition.CompetitionStatus == ProjektZawody.Data.Enums.CompetitionStatus.InProgress || @score.Competition.CompetitionStatus == ProjektZawody.Data.Enums.CompetitionStatus.error)
+                                    {
+                                        <td>@score.Competition.CompetitionStatus</td>
+                                    }
+                                    @if (@score.Competition.CompetitionStatus == ProjektZawody.Data.Enums.CompetitionStatus.Finished)
+                                    {
+                                        <td>@score.Points</td>
+                                    }
+
+                                </tr>
+                            }
+                        </tbody>
+                        
+                    </table>
+
+                    }
+                    @if (!Model.Scores.Any())
+                    {
+                        <td>Gracz nie bierze udział w żadnych zawodach</td>
+                    }
+
+            </div>
+        </div>
+    </div>
+    <div class="text-white">
+        <a class="btn btn-success" asp-action="JoinCompetition" asp-route-playerId="@Model.Id">Dodaj kolejne zawody</a>
+    </div>
+</div>

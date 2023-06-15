@@ -1,0 +1,52 @@
+﻿@using ProjektZawody.Data.ViewModels
+@model List<AddScoresViewModel>
+
+@{
+    ViewData["Title"] = "Wprowadź Wyniki";
+}
+
+<h1>
+    Wprowadź Wyniki zawodów  @Model.First().CompetitionName </h1>
+
+<form asp-action="Finish" >
+    <table>
+        <thead>
+            <tr>
+                <th>
+                @Html.DisplayNameFor(model=>model.First().FirstName)
+                </th>
+                <th>
+                
+                        @Html.DisplayNameFor(model=>model.First().LastName)
+
+                </th>
+                <th>
+                
+                            @Html.DisplayNameFor(model=>model.First().Points)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                        <input type="hidden" asp-for="@Model[i].PlayerId" class="form-control">
+                        <input type="hidden" asp-for="@Model[i].CompetitionId" class="form-control">
+                        <input type="hidden" asp-for="@Model[i].FirstName" class="form-control">
+                        <input type="hidden" asp-for="@Model[i].LastName" class="form-control">
+                    <input type="hidden" asp-for="@Model[i].CompetitionName" class="form-control">
+
+                    <td>@Model[i].FirstName</td>
+                    <td>@Model[i].LastName</td>
+                    <td>
+
+                        <input asp-for="@Model[i].Points" class="form-control" />
+                        <span asp-validation-for="@Model[i].Points" class="text-danger"></span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button type="submit">Zatwierdź</button>
+</form>
