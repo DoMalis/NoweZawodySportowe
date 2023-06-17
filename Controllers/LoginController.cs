@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
 using ProjektZawody.Models;
 using ProjektZawody.Services;
 
@@ -8,14 +9,7 @@ namespace ProjektZawody.Controllers
     {
         public IActionResult Index()
         {
-
             UserModel user = new UserModel();
-            // Inicjalizuj user.UserName i user.Password
-
-            /* UserDAO userDAO = new UserDAO();
-             string userRole = userDAO.GetUserRole(user);
-
-             user.Role = userRole;*/
 
             return View(user);
         }
@@ -26,6 +20,7 @@ namespace ProjektZawody.Controllers
             if(securityService.IsValid(userModel))
             {
             userModel.Role=securityService.getRole(userModel);
+                Response.Cookies.Append("UserRole", userModel.Role);
 
                 return View("LoginSuccess", userModel);
             }
@@ -34,6 +29,16 @@ namespace ProjektZawody.Controllers
                 return View("LoginFailure", userModel);
 
             }
+            
+        }
+        public IActionResult Logout()
+        {
+            var cookies = Request.Cookies.Keys;
+            foreach (var cookie in cookies)
+            {
+                Response.Cookies.Delete(cookie);
+            }
+            return View("Logout");
         }
     }
 }

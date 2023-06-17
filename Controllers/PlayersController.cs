@@ -8,8 +8,8 @@ using System.Numerics;
 
 namespace ProjektZawody.Controllers
 {
-    [Route("api/players")]
-    [ApiController]
+    //[Route("api/players")]
+    //[ApiController]
     //[Authorize]
     public class PlayersController : Controller //klasa będąca kontrolerem playera, przekierowuje do stron w zależności od wybranej czynności
     {

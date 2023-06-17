@@ -1,29 +1,8 @@
 ﻿@model ProjektZawody.Models.UserModel
 
-
-
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Wyloguj</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    @if (Model.Role == "admin")
-                    {
-                        
-                        <li class="navbar-nav flex-grow-1">
-                            <a class="nav-link text-dark" asp-controller="Players" asp-action="Players">Players</a>
-                        </li>
-                    }
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
+@{
+    ViewData["Title"] = "Poprawne zalogowanie";
+}
 
 <div>
     <h2>Login Successful!</h2>
@@ -43,6 +22,8 @@
         </dd>
     </dl>
 </div>
+
+<h3>Proszę odświeżyc stronę ;)</h3>
 
 <div>
     <a asp-action="Index">Back to List</a>

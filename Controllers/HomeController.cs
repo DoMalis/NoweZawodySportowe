@@ -15,6 +15,11 @@ namespace ProjektZawody.Controllers
 
         public IActionResult Index()
         {
+            var cookies = Request.Cookies.Keys;
+            foreach (var cookie in cookies)
+            {
+                Response.Cookies.Delete(cookie);
+            }
             return View();
         }
 
