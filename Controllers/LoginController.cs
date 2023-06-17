@@ -8,6 +8,7 @@ namespace ProjektZawody.Controllers
     {
         public IActionResult Index()
         {
+
             UserModel user = new UserModel();
             // Inicjalizuj user.UserName i user.Password
 
@@ -24,6 +25,8 @@ namespace ProjektZawody.Controllers
             SecurityService securityService = new SecurityService();
             if(securityService.IsValid(userModel))
             {
+            userModel.Role=securityService.getRole(userModel);
+
                 return View("LoginSuccess", userModel);
             }
             else

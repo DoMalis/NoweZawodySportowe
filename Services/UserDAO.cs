@@ -33,8 +33,8 @@ namespace ProjektZawody.Services
 
             return success;
         }
-/*
-        public string GetUserRole(UserModel username)
+
+        public string GetUserRole(UserModel user)
         {
             string role = string.Empty;
             string sqlStatement = "SELECT role FROM dbo.AllUsers WHERE username = @username";
@@ -42,8 +42,8 @@ namespace ProjektZawody.Services
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(sqlStatement, connection);
-                command.Parameters.Add("@username", System.Data.SqlDbType.VarChar, 40).Value = username;
-
+                command.Parameters.Add("@username", System.Data.SqlDbType.VarChar, 40).Value = user.UserName;
+                command.Parameters.Add("@password", System.Data.SqlDbType.VarChar, 40).Value = user.Password;
                 try
                 {
                     connection.Open();
@@ -52,6 +52,8 @@ namespace ProjektZawody.Services
                     if (reader.Read())
                     {
                         role = reader["role"].ToString();
+                        Console.WriteLine("odczytano: "+ role);
+
                     }
                 }
                 catch (Exception e)
@@ -61,7 +63,7 @@ namespace ProjektZawody.Services
             }
 
             return role;
-        }*/
+        }
 
     }
 

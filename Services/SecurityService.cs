@@ -14,5 +14,11 @@ namespace ProjektZawody.Services
         {
             return usersDAO.FindUserByNameAndPassword(user);
         }
+
+        public string getRole(UserModel user)
+        {
+           return  usersDAO.GetUserRole(user);
+        }
+
     }
 }
