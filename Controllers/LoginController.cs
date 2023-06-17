@@ -9,13 +9,19 @@ namespace ProjektZawody.Controllers
     {
         public IActionResult Index()
         {
+            var cookies = Request.Cookies.Keys;
+            foreach (var cookie in cookies)
+            {
+                Response.Cookies.Delete(cookie);
+            }
             UserModel user = new UserModel();
 
             return View(user);
         }
 
         public IActionResult ProcessLogin(UserModel userModel) 
-        { 
+        {
+            ViewBag.PageTitle = "Logowanie";
             SecurityService securityService = new SecurityService();
             if(securityService.IsValid(userModel))
             {
@@ -33,6 +39,8 @@ namespace ProjektZawody.Controllers
         }
         public IActionResult Logout()
         {
+            ViewBag.PageTitle = "Wylogowanie";
+
             var cookies = Request.Cookies.Keys;
             foreach (var cookie in cookies)
             {

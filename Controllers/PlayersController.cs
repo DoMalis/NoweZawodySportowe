@@ -26,15 +26,16 @@ namespace ProjektZawody.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            ViewBag.PageTitle = "Lista graczy";
             var data = _service.GetAll();
             return View(data);
         }
 
         //Get: Players/Create
         //strona dodawania nowego użytkownika
-        [HttpPost]
         public IActionResult Create()
         {
+            ViewBag.PageTitle = "Dodawanie gracza";
             return View();
         }
         //wynik dodwania nowego użytkownika
@@ -52,6 +53,7 @@ namespace ProjektZawody.Controllers
         //Get: Players/Details/1
         public IActionResult Details(int id)
         {
+            ViewBag.PageTitle = "Szczegóły gracza";
             var details = _service.GetPlayerById(id);
             if (details == null) return View("NotFound");
             return View(details);
@@ -60,6 +62,7 @@ namespace ProjektZawody.Controllers
         //Get: Players/Edit
         public IActionResult Edit(int id)
         {
+            ViewBag.PageTitle = "Edycja gracza";
             var details = _service.GetPlayerById(id);
             if (details == null) return View("NotFound");
             return View(details);
@@ -78,6 +81,7 @@ namespace ProjektZawody.Controllers
         //Get: Players/Delete 
         public IActionResult Delete(int id)
         {
+            ViewBag.PageTitle = "Usuwanie gracza";
             var details = _service.GetPlayerById(id);
             if (details == null) return View("NotFound");
             return View(details);
@@ -96,6 +100,7 @@ namespace ProjektZawody.Controllers
 
         public IActionResult JoinCompetition(int playerId)
         {
+            ViewBag.PageTitle = "Dołączanie do zawodów";
             var availableCompetitions = _service.GetAvailableCompetitions(playerId);
             if (availableCompetitions == null) return View("NotFound");
             ViewBag.PlayerId = playerId;

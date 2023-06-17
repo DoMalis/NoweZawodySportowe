@@ -15,6 +15,7 @@ namespace ProjektZawody.Data.Services
         public void Add(Player player)
         {
             player.Scores=new List<Score>();
+            _context.Add(player);
             _context.SaveChanges();
         }
 

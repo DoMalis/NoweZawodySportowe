@@ -22,12 +22,16 @@ namespace ProjektZawody.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.PageTitle = "Lista zawodów";
+
             var data = _service.GetAll();
             return View(data);
         }
 
         public IActionResult Create()
         {
+            ViewBag.PageTitle = "Dodawanie zawodów";
+
             return View();
         }
 
@@ -48,6 +52,8 @@ namespace ProjektZawody.Controllers
 
         public IActionResult Delete(int id)
         {
+            ViewBag.PageTitle = "Usuwanie";
+
             var details = _service.GetCompetitionById(id);
             if (details == null) return View("NotFound");
             return View(details);
@@ -70,6 +76,8 @@ namespace ProjektZawody.Controllers
 
         public IActionResult Details(int id)
         {
+            ViewBag.PageTitle = "Szczegóły zawodów";
+
             var details = _service.GetCompetitionById(id);
             if (details == null) return View("NotFound");
             return View(details);
@@ -78,6 +86,8 @@ namespace ProjektZawody.Controllers
 
         public IActionResult Edit(int id)
         {
+            ViewBag.PageTitle = "Edycja";
+
             var details = _service.GetCompetitionById(id);
             if (details == null) return View("NotFound");
             return View(details);
@@ -100,6 +110,8 @@ namespace ProjektZawody.Controllers
 
         public IActionResult Start(int id)
         {
+            ViewBag.PageTitle = "Rozpoczęcie";
+
             var details = _service.GetCompetitionById(id);
             if (details == null) return View("NotFound");
             return View(details);
@@ -118,6 +130,8 @@ namespace ProjektZawody.Controllers
 
         public IActionResult Finish(int id)
         {
+            ViewBag.PageTitle = "Zakończenie";
+
             var details = _service.GetScores(id);
             if (details == null) return View("NotFound");
             var detailsView = details.Select(s => new AddScoresViewModel

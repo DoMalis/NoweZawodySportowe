@@ -15,6 +15,8 @@ namespace ProjektZawody.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.PageTitle = "Strona wejściowa";
+
             var cookies = Request.Cookies.Keys;
             foreach (var cookie in cookies)
             {
