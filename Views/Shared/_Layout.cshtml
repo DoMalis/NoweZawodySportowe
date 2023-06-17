@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -15,32 +14,25 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
 
-                @if (Context.Request.Cookies["UserRole"] != null)
-                {
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
 
-                        <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav flex-grow-1">
 
+                        <li class="navbar-nav flex-grow-1">
+                            <a class="nav-link text-dark" asp-controller="Players" asp-action="Index">Players</a>
+                        </li>
+                        <li class="navbar-nav flex-grow-1">
+                            <a class="nav-link text-dark" asp-controller="Competitions" asp-action="Index">Competitions</a>
+                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
                             <li class="navbar-nav flex-grow-1">
                                 <a class="nav-link text-dark" asp-controller="Login" asp-action="Logout">Logout</a>
                             </li>
+                        }
 
-                            <li class="navbar-nav flex-grow-1">
-                                <a class="nav-link text-dark" asp-controller="Players" asp-action="Index">Players</a>
-                            </li>
-                            <li class="navbar-nav flex-grow-1">
-                                <a class="nav-link text-dark" asp-controller="Competitions" asp-action="Index">Competitions</a>
-                            </li>
-
-                        </ul>
-                    </div>
-                }
-
-
-
-
-
-
+                    </ul>
+                </div>
 
 
 

@@ -10,7 +10,7 @@ namespace ProjektZawody.Controllers
 {
     //[Route("api/players")]
     //[ApiController]
-    //[Authorize]
+    [Authorize]
     public class PlayersController : Controller //klasa będąca kontrolerem playera, przekierowuje do stron w zależności od wybranej czynności
     {
         //interfejs serwisu
@@ -30,9 +30,9 @@ namespace ProjektZawody.Controllers
             var data = _service.GetAll();
             return View(data);
         }
-
         //Get: Players/Create
         //strona dodawania nowego użytkownika
+        [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
             ViewBag.PageTitle = "Dodawanie gracza";
@@ -60,6 +60,7 @@ namespace ProjektZawody.Controllers
         }
 
         //Get: Players/Edit
+        [Authorize(Roles = "admin")]
         public IActionResult Edit(int id)
         {
             ViewBag.PageTitle = "Edycja gracza";
@@ -77,8 +78,8 @@ namespace ProjektZawody.Controllers
             _service.Update(id, player);
             return RedirectToAction("Index");
         }
-
         //Get: Players/Delete 
+        [Authorize(Roles = "admin")]
         public IActionResult Delete(int id)
         {
             ViewBag.PageTitle = "Usuwanie gracza";

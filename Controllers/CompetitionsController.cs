@@ -10,7 +10,7 @@ namespace ProjektZawody.Controllers
 {
     //[Route("api/competition")]
     //[ApiController]
-    //[Authorize]
+    [Authorize]
     public class CompetitionsController : Controller
     {
         private readonly ICompetitionService _service;
@@ -28,6 +28,7 @@ namespace ProjektZawody.Controllers
             return View(data);
         }
 
+        [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
             ViewBag.PageTitle = "Dodawanie zawodów";
@@ -37,7 +38,6 @@ namespace ProjektZawody.Controllers
 
         //wynik dodwania nowych zawodów
         [HttpPost]
-        //[Authorize(Roles = "Admin")]
         public IActionResult Create([Bind("Name,MinAge,MaxAge")] Competition competition)
         {
             if (!ModelState.IsValid)
@@ -49,7 +49,7 @@ namespace ProjektZawody.Controllers
         }
 
         //Get: Competitions/Delete 
-
+        [Authorize(Roles = "admin")]
         public IActionResult Delete(int id)
         {
             ViewBag.PageTitle = "Usuwanie";
@@ -83,7 +83,7 @@ namespace ProjektZawody.Controllers
             return View(details);
         }
 
-
+        [Authorize(Roles = "admin")]
         public IActionResult Edit(int id)
         {
             ViewBag.PageTitle = "Edycja";
@@ -106,7 +106,6 @@ namespace ProjektZawody.Controllers
 
             return RedirectToAction("Index");
         }
-
 
         public IActionResult Start(int id)
         {

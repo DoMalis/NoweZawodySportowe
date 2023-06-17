@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using ProjektZawody.Data;
 using ProjektZawody.Data.Services;
+using Microsoft.AspNetCore.Identity;
 
 namespace ProjektZawody
 {
@@ -23,7 +25,28 @@ namespace ProjektZawody
             context.Database.Migrate();
 
             builder.Services.AddControllersWithViews();
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options=>
+                {
+                    options.LoginPath = "/login";
+                    options.AccessDeniedPath = "/denied";
+                    options.Events=new CookieAuthenticationEvents()
+                    {
+                        OnSigningIn=async context=>
+                        {
+                            await Task.CompletedTask;
+                        },
+                        OnSignedIn= async context=>
+                        {
+                            await Task.CompletedTask;
+                        },
+                        OnValidatePrincipal= async context=>
+                        {
+                            await Task.CompletedTask;
+                        }
 
+                    };
+                });
 
 
 
@@ -44,7 +67,10 @@ namespace ProjektZawody
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+
+
 
 
             app.MapControllerRoute(
