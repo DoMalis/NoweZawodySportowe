@@ -124,7 +124,7 @@ namespace ProjektZawody.Services
         public UserModel GetUser(int id)
         {
             UserModel user = null;
-            string sqlStatement = "SELECT FROM dbo.AllUsers WHERE Id = @id";
+            string sqlStatement = "SELECT * FROM dbo.AllUsers WHERE Id = @id";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(sqlStatement, connection);
