@@ -9,6 +9,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.IdentityModel.Tokens;
 using FluentValidation;
 using System.Text;
+using ProjektZawody.Services;
 /*
 namespace ProjektZawody
 {
@@ -52,6 +53,8 @@ namespace ProjektZawody
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
+            services.AddScoped<ThemeService>();
+
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ProjectSeeder seeder)
@@ -75,4 +78,5 @@ namespace ProjektZawody
         }
 
     }
-}*/
+}
+*/

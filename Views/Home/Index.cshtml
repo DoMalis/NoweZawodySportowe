@@ -1,9 +1,25 @@
 ﻿@{
     ViewData["Title"] = "Strona powitalna";
+    var theme = ViewData["Theme"] as string;
 }
 
-
-<div class="text-center">
-    <h1 class="display-4">Witam na stronie zawodów sportowych</h1>
-                        <a class="nav-link text-dark" asp-controller="Login" asp-action="Index">Login</a>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Theme Example</title>
+    @if (theme == "dark")
+    {
+        <link rel="stylesheet" href="~/css/dark-theme.css" id="themeStylesheet">
+    }
+    else
+    {
+        <link rel="stylesheet" href="~/css/light-theme.css" id="themeStylesheet">
+    }
+</head>
+<body>
+    <div class="text-center">
+        <h1 class="display-4">Witam na stronie zawodów sportowych</h1>
+        <a class="nav-link text-dark" asp-controller="Login" asp-action="Index">Login</a>
+    </div>
+</body>
+</html>

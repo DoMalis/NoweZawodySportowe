@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjektZawody.Models;
+using ProjektZawody.Services;
 using System.Diagnostics;
 
 namespace ProjektZawody.Controllers
@@ -7,21 +8,25 @@ namespace ProjektZawody.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ThemeService _themeService;
+        public HomeController(ILogger<HomeController> logger, ThemeService themeService)
         {
             _logger = logger;
+            _themeService = themeService;
         }
 
         public IActionResult Index()
         {
             ViewBag.PageTitle = "Strona wejściowa";
+            string theme = _themeService.GetThemeFromCookie();
 
-            var cookies = Request.Cookies.Keys;
+            ViewData["Theme"] = theme ?? "light";
+
+           /* var cookies = Request.Cookies.Keys;
             foreach (var cookie in cookies)
             {
                 Response.Cookies.Delete(cookie);
-            }
+            }*/
             return View();
         }
 
@@ -34,6 +39,13 @@ namespace ProjektZawody.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult SetTheme(string theme)
+        {
+            _themeService.SetThemeCookie(theme);
+
+            return RedirectToAction("Index");
         }
     }
 }

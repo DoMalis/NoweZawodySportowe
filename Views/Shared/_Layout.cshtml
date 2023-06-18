@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var theme = ViewData["Theme"] as string;
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -7,7 +11,16 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ProjektZawody.styles.css" asp-append-version="true" />
-
+    <title>Theme Example</title>
+    
+    @if (theme == "dark")
+    {
+        <link rel="stylesheet" href="~/css/dark-theme.css" id="themeStylesheet">
+    }
+    else
+    {
+        <link rel="stylesheet" href="~/css/light-theme.css" id="themeStylesheet">
+    }
 </head>
 <body>
     <header>
@@ -30,10 +43,14 @@
                                 <a class="nav-link text-dark" asp-controller="Login" asp-action="Logout">Logout</a>
                             </li>
                         }
-
+                        
                     </ul>
-                </div>
+                    <p>Current theme: @theme</p>
 
+                    <a asp-action="SetTheme" asp-route-theme="light">Set Light Theme</a>
+                    <a asp-action="SetTheme" asp-route-theme="dark">Set Dark Theme</a>
+                </div>
+               
 
 
             </div>

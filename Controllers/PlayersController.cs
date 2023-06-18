@@ -60,7 +60,8 @@ namespace ProjektZawody.Controllers
         }
 
         //Get: Players/Edit
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, judge")]
+
         public IActionResult Edit(int id)
         {
             ViewBag.PageTitle = "Edycja gracza";
