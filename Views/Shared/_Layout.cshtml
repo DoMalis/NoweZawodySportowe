@@ -1,5 +1,6 @@
 ﻿@{
-    var theme = ViewData["Theme"] as string;
+    var themeCookie = Context.Request.Cookies["ThemeCookie"];
+    string theme = !string.IsNullOrEmpty(themeCookie) ? themeCookie : "light";
 }
 
 <!DOCTYPE html>
@@ -47,8 +48,8 @@
                     </ul>
                     <p>Current theme: @theme</p>
 
-                    <a asp-action="SetTheme" asp-route-theme="light">Set Light Theme</a>
-                    <a asp-action="SetTheme" asp-route-theme="dark">Set Dark Theme</a>
+                    <a asp-controller="Theme" asp-action="SetTheme" asp-route-theme="light" class=" btn btn-light">Light</a>
+                    <a asp-controller="Theme" asp-action="SetTheme" asp-route-theme="dark"  class=" btn btn-dark">Dark</a>
                 </div>
                
 

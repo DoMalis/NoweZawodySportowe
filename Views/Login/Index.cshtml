@@ -1,23 +1,6 @@
 ﻿@model ProjektZawody.Models.UserModel
 
-@{
-    ViewData["Title"] = "Logowanie";
-    var theme = ViewData["Theme"] as string;
-}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Theme Example</title>
-    @if (theme == "dark")
-    {
-        <link rel="stylesheet" href="~/css/dark-theme.css" id="themeStylesheet">
-    }
-    else
-    {
-        <link rel="stylesheet" href="~/css/light-theme.css" id="themeStylesheet">
-    }
-</head>
-<body>
+
     <h2>Logowanie</h2>
     <hr />
     <div class="row">
@@ -39,8 +22,7 @@
                 <div class="form-group">
                     <input type="submit" value="Login" class="btn btn-primary" />
                 </div>
-                <a asp-action="SetTheme" asp-route-theme="light">Set Light Theme</a>
-                <a asp-action="SetTheme" asp-route-theme="dark">Set Dark Theme</a>
+
             </form>
         </div>
     </div>
@@ -50,5 +32,3 @@
             await Html.RenderPartialAsync("_ValidationScriptsPartial");
         }
     }
-</body>
-</html>

@@ -8,8 +8,7 @@ using ProjektZawody.Models;
 
 namespace ProjektZawody.Controllers
 {
-    //[Route("api/competition")]
-    //[ApiController]
+
     [Authorize]
     public class CompetitionsController : Controller
     {
@@ -61,7 +60,6 @@ namespace ProjektZawody.Controllers
 
         //wynik usuwania zawodów
         [HttpPost, ActionName("Delete")]
-        //[Authorize(Roles = "Admin")]
         public IActionResult DeleteConfirmed(int id)
         {
             //uzyskujemy dane zawodów które planujemy usunąć
@@ -73,7 +71,7 @@ namespace ProjektZawody.Controllers
             //wracamy do strony głównej
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "admin, judge, user")]
         public IActionResult Details(int id)
         {
             ViewBag.PageTitle = "Szczegóły zawodów";
@@ -94,8 +92,6 @@ namespace ProjektZawody.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Roles = "Admin, Judge")]
-
         public IActionResult Edit(int id, [Bind("Id,Name,MinAge,MaxAge,CompetitionStatus")] Competition competition)
         {
             if (!ModelState.IsValid)
@@ -106,7 +102,7 @@ namespace ProjektZawody.Controllers
 
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "admin, judge")]
         public IActionResult Start(int id)
         {
             ViewBag.PageTitle = "Rozpoczęcie";
@@ -118,7 +114,6 @@ namespace ProjektZawody.Controllers
 
         //wynik usuwania zawodów
         [HttpPost, ActionName("Start")]
-        //[Authorize(Roles = "Admin, Judge")]
         public IActionResult StartConfirmed(int id)
         {
             var details = _service.GetCompetitionById(id);
@@ -126,7 +121,7 @@ namespace ProjektZawody.Controllers
             _service.StartCompetition(id);
             return RedirectToAction("Details", details);
         }
-
+        [Authorize(Roles = "admin, judge")]
         public IActionResult Finish(int id)
         {
             ViewBag.PageTitle = "Zakończenie";
@@ -147,7 +142,6 @@ namespace ProjektZawody.Controllers
         }
 
         [HttpPost, ActionName("Finish")]
-        //[Authorize(Roles = "Admin, Judge")]
         public IActionResult FinishConfirmed(int id, List<AddScoresViewModel> scoresViewModel)
         {
             // Pobierz pełne dane zawodów z bazy danych

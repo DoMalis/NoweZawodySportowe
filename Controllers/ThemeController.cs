@@ -6,18 +6,27 @@ namespace ProjektZawody.Controllers
     {
         public IActionResult Index()
         {
+            //return RedirectToAction("Home");
             return View();
+
         }
 
         public IActionResult SetTheme(string theme)
         {
             // Ustawienie ciasteczka o nazwie "ThemeCookie" z wybranym motywem
+            if (Request.Cookies.ContainsKey("ThemeCookie"))
+            {
+                Response.Cookies.Delete("ThemeCookie");
+            }
+
             Response.Cookies.Append("ThemeCookie", theme, new CookieOptions
             {
-                Expires = DateTimeOffset.Now.AddDays(7) // Ustawienie czasu wygaśnięcia ciasteczka
+                Expires = DateTimeOffset.Now.AddDays(7)
             });
 
-            return RedirectToAction("Index", "Home"); // Przekierowanie na stronę główną
+
+            return RedirectToAction("Index", "Home");
+
         }
     }
 }

@@ -18,15 +18,8 @@ namespace ProjektZawody.Controllers
         public IActionResult Index()
         {
             ViewBag.PageTitle = "Strona wejściowa";
-            string theme = _themeService.GetThemeFromCookie();
 
-            ViewData["Theme"] = theme ?? "light";
 
-           /* var cookies = Request.Cookies.Keys;
-            foreach (var cookie in cookies)
-            {
-                Response.Cookies.Delete(cookie);
-            }*/
             return View();
         }
 

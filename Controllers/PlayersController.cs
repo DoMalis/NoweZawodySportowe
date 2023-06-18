@@ -8,8 +8,7 @@ using System.Numerics;
 
 namespace ProjektZawody.Controllers
 {
-    //[Route("api/players")]
-    //[ApiController]
+
     [Authorize]
     public class PlayersController : Controller //klasa będąca kontrolerem playera, przekierowuje do stron w zależności od wybranej czynności
     {
@@ -51,6 +50,7 @@ namespace ProjektZawody.Controllers
         }
 
         //Get: Players/Details/1
+        [Authorize(Roles = "admin, judge, user")]
         public IActionResult Details(int id)
         {
             ViewBag.PageTitle = "Szczegóły gracza";
@@ -61,7 +61,6 @@ namespace ProjektZawody.Controllers
 
         //Get: Players/Edit
         [Authorize(Roles = "admin, judge")]
-
         public IActionResult Edit(int id)
         {
             ViewBag.PageTitle = "Edycja gracza";
@@ -99,7 +98,7 @@ namespace ProjektZawody.Controllers
 
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "admin, judge")]
         public IActionResult JoinCompetition(int playerId)
         {
             ViewBag.PageTitle = "Dołączanie do zawodów";

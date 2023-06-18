@@ -14,11 +14,7 @@ namespace ProjektZawody.Controllers
         {
             ViewBag.PageTitle = "Logowanie";
 
-            var cookies = Request.Cookies.Keys;
-            foreach (var cookie in cookies)
-            {
-                Response.Cookies.Delete(cookie);
-            }
+          
             UserModel user = new UserModel();
 
             return View(user);
@@ -32,7 +28,7 @@ namespace ProjektZawody.Controllers
             {
                 var role = securityService.getRole(userModel);
                 userModel.Role = role.Replace(" ", "");
-                 //Response.Cookies.Append("UserRole", userModel.Role);
+
                  var claims = new List<Claim>();
                 claims.Add(new Claim("username", userModel.UserName));
                 claims.Add(new Claim(ClaimTypes.NameIdentifier, userModel.UserName));
@@ -56,11 +52,7 @@ namespace ProjektZawody.Controllers
         {
             ViewBag.PageTitle = "Wylogowanie";
             await HttpContext.SignOutAsync();
-            var cookies = Request.Cookies.Keys;
-            foreach (var cookie in cookies)
-            {
-                Response.Cookies.Delete(cookie);
-            }
+
             return View("Logout");
         }
         [HttpGet("denied")]
