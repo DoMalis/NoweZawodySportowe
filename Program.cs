@@ -17,9 +17,12 @@ namespace ProjektZawody
             // Add services to the container.
             builder.Services.AddScoped<IPlayerService, PlayersService>();
             builder.Services.AddScoped<ICompetitionService, CompetitionService>();
+            builder.Services.AddScoped<INewUserService, NewUserService>();
+
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddScoped<ThemeService, ThemeService>();
             builder.Services.AddTransient<ThemeController>();
+            builder.Services.AddScoped<UserDAO>();
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));

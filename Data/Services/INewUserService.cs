@@ -4,6 +4,8 @@ namespace ProjektZawody.Data.Services
 {
     public interface INewUserService
     {
-        void Add(NewUser newUser);
+        void AddUser(NewUser newUser);
+        List<UserModel> GetAllUsers();
+
     }
 }

@@ -1,22 +1,32 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjektZawody.Models;
+using ProjektZawody.Services;
 using System.Numerics;
 
 namespace ProjektZawody.Data.Services
 {
     public class NewUserService : INewUserService
     {
-        private readonly AppDbContext _context;
-
-        public NewUserService(AppDbContext context)
+        private readonly UserDAO usersDAO;
+        public NewUserService(UserDAO usersDAO)
         {
-            _context = context;
+            this.usersDAO = usersDAO;
         }
 
-        public void Add(NewUser newUser)
+
+        public void AddUser(NewUser user)
         {
-            _context.Add(newUser);
-            _context.SaveChanges();
+            usersDAO.AddUser(user);
         }
+
+
+        public List<UserModel> GetAllUsers()
+        {
+            var result = usersDAO.GetAllUsers();
+            return result;
+        }
+
+
+
     }
 }

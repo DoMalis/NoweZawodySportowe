@@ -64,7 +64,61 @@ namespace ProjektZawody.Services
 
             return role;
         }
+        public void AddUser(NewUser user)
+        {
+            string sqlStatement = "INSERT INTO dbo.AllUsers VALUES (@username, @password, @role)";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(sqlStatement, connection);
+                command.Parameters.Add("@username", System.Data.SqlDbType.VarChar, 40).Value = user.UserName;
+                command.Parameters.Add("@password", System.Data.SqlDbType.VarChar, 40).Value = user.Password;
+                command.Parameters.Add("@role", System.Data.SqlDbType.VarChar, 40).Value = user.Role;
 
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+            }
+
+        }
+        public List<UserModel> GetAllUsers()
+        {
+            List<UserModel> userList = new List<UserModel>();
+
+            string sqlStatement = "SELECT * FROM dbo.AllUsers";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(sqlStatement, connection);
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        UserModel user = new UserModel
+                        {
+                            UserName = reader["username"].ToString(),
+                            Password = reader["password"].ToString(),
+                            Role = reader["role"].ToString()
+                        };
+                        userList.Add(user);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+            return userList;
+        }
     }
 
     

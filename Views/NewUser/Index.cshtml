@@ -1,0 +1,49 @@
+﻿@model List<UserModel>
+
+
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <table>
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model=>model.First().UserName)</th>
+                    <th>@Html.DisplayNameFor(model=>model.First().Password)</th>
+                    <th>@Html.DisplayNameFor(model=>model.First().Role)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="align_middle">
+                            @Html.DisplayFor(modelItem=>item.UserName);
+                        </td>
+                        <td class="align_middle">
+                            @Html.DisplayFor(modelItem=>item.Password);
+                        </td>
+                        <td class="align_middle">
+                            @Html.DisplayFor(modelItem=>item.Role);
+                        </td>
+                        <td class="align_middle">
+                            <a class="btn-outline-primary" asp-action="Delete" asp-route-name="@item.UserName" asp-route-password="@item.Password">Delete</a>
+                        </td>
+                    </tr>
+
+
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+
+<div class="text-white">
+    <a asp-controller="NewUser" asp-action="Create" class="btn btn-success">Dodaj</a>
+</div>
+
+
+
