@@ -6,6 +6,8 @@ namespace ProjektZawody.Data.Services
     {
         void AddUser(NewUser newUser);
         List<UserModel> GetAllUsers();
+        void DeleteUser(int id);
+        UserModel GetUserById(int id);
 
     }
 }

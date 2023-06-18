@@ -12,7 +12,7 @@ namespace ProjektZawody.Services
             string sqlStatement = "SELECT * FROM dbo.AllUsers WHERE username = @username AND password = @password";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand command = new SqlCommand (sqlStatement, connection);
+                SqlCommand command = new SqlCommand(sqlStatement, connection);
                 command.Parameters.Add("@username", System.Data.SqlDbType.VarChar, 40).Value = user.UserName;
                 command.Parameters.Add("@password", System.Data.SqlDbType.VarChar, 40).Value = user.Password;
                 try
@@ -20,12 +20,12 @@ namespace ProjektZawody.Services
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
 
-                    if(reader.HasRows)
+                    if (reader.HasRows)
                     {
                         success = true;
                     }
                 }
-                catch (Exception e) 
+                catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                 }
@@ -52,7 +52,7 @@ namespace ProjektZawody.Services
                     if (reader.Read())
                     {
                         role = reader["role"].ToString();
-                        Console.WriteLine("odczytano: "+ role);
+                        Console.WriteLine("odczytano: " + role);
 
                     }
                 }
@@ -105,6 +105,7 @@ namespace ProjektZawody.Services
                     {
                         UserModel user = new UserModel
                         {
+                            Id = (int)reader["Id"],
                             UserName = reader["username"].ToString(),
                             Password = reader["password"].ToString(),
                             Role = reader["role"].ToString()
@@ -119,7 +120,61 @@ namespace ProjektZawody.Services
             }
             return userList;
         }
-    }
 
-    
+        public UserModel GetUser(int id)
+        {
+            UserModel user = null;
+            string sqlStatement = "SELECT FROM dbo.AllUsers WHERE Id = @id";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(sqlStatement, connection);
+                command.Parameters.Add("@id", System.Data.SqlDbType.VarChar, 40).Value = id;
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        user = new UserModel
+                        {
+                            Id= (int)reader["Id"],
+                            UserName = reader["username"].ToString(),
+                            Password = reader["password"].ToString(),
+                            Role = reader["role"].ToString()
+                        };
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+            return user;
+
+        }
+
+
+        public void DeleteUser(int id)
+        {
+            string sqlStatement = "DELETE FROM dbo.AllUsers WHERE Id = @id";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(sqlStatement, connection);
+                command.Parameters.Add("@id", System.Data.SqlDbType.VarChar, 40).Value = id;
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+        }
+    }
 }
+

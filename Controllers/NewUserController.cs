@@ -40,11 +40,33 @@ namespace ProjektZawody.Controllers
             return RedirectToAction("Index");
         }
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public IActionResult Index()
         {
             ViewBag.PageTitle = "Lista użytkowników";
                   var data = _service.GetAllUsers();
             return View(data);
+        }
+
+        //Get: Players/Delete 
+        [Authorize(Roles = "admin")]
+        public IActionResult Delete(int id)
+        {
+            ViewBag.PageTitle = "Usuwanie uzytkownika";
+            var details = _service.GetUserById(id);
+            if (details == null) return View("NotFound");
+            return View(details);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfiremd(int id)
+        {
+            var details = _service.GetUserById(id);
+            if (details == null) return View("NotFound");
+
+            _service.DeleteUser(id);
+
+            return RedirectToAction("Index");
         }
     }
 }

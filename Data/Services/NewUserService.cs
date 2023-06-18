@@ -13,7 +13,6 @@ namespace ProjektZawody.Data.Services
             this.usersDAO = usersDAO;
         }
 
-
         public void AddUser(NewUser user)
         {
             usersDAO.AddUser(user);
@@ -26,6 +25,16 @@ namespace ProjektZawody.Data.Services
             return result;
         }
 
+        public void DeleteUser(int id)
+        {
+            usersDAO.DeleteUser(id);
+        }
+
+        public UserModel GetUserById(int id) 
+        {
+            var result = usersDAO.GetUser(id);
+            return result;
+        }
 
 
     }
