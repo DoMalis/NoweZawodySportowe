@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@(ViewBag.PageTitle ?? "Projekt Zawody")</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <!--<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />-->
     <link rel="stylesheet" href="~/ProjektZawody.styles.css" asp-append-version="true" />
     <title>Theme Example</title>
     
@@ -22,6 +22,7 @@
     {
         <link rel="stylesheet" href="~/css/light-theme.css" id="themeStylesheet">
     }
+
 </head>
 <body>
     <header>
@@ -33,15 +34,15 @@
                     <ul class="navbar-nav flex-grow-1">
 
                         <li class="navbar-nav flex-grow-1">
-                            <a class="nav-link text-dark" asp-controller="Players" asp-action="Index">Players</a>
+                            <a class="nav-link text-dark" asp-controller="Players" asp-action="Index">Zawodnicy</a>
                         </li>
                         <li class="navbar-nav flex-grow-1">
-                            <a class="nav-link text-dark" asp-controller="Competitions" asp-action="Index">Competitions</a>
+                            <a class="nav-link text-dark" asp-controller="Competitions" asp-action="Index">Zawody</a>
                         </li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="navbar-nav flex-grow-1">
-                                <a class="nav-link text-dark" asp-controller="Login" asp-action="Logout">Logout</a>
+                                <a class="nav-link text-dark" asp-controller="Login" asp-action="Logout">Wyloguj</a>
                             </li>
                         }
                         @if (User.IsInRole("admin"))
@@ -54,8 +55,8 @@
                     </ul>
                     <p>Current theme: @theme</p>
 
-                    <a asp-controller="Theme" asp-action="SetTheme" asp-route-theme="light" class=" btn btn-light">Light</a>
-                    <a asp-controller="Theme" asp-action="SetTheme" asp-route-theme="dark"  class=" btn btn-dark">Dark</a>
+                    <a asp-controller="Theme" asp-action="SetTheme" asp-route-theme="light" class=" btn btn-light">Jasny</a>
+                    <a asp-controller="Theme" asp-action="SetTheme" asp-route-theme="dark"  class=" btn btn-dark">Ciemny</a>
                 </div>
                
 
@@ -69,10 +70,18 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container-fluid">
-            &copy; 2023 - ProjektZawody - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="footer">
+        <div class="footer-images">
+            <figure>
+                <img src="~/imgfiles/obrazek1.jpg" />
+                <figcaption>By Dorota Maliszewska</figcaption>
+            </figure>
+            <figure>
+                <img src="~/imgfiles/obrazek2.jpg" />
+                <figcaption>& Justyna Sadowska</figcaption>
+            </figure>
         </div>
+        
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

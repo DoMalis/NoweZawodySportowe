@@ -6,6 +6,7 @@ namespace ProjektZawody.Services
     public class UserDAO
     {
         string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ProjektZawodyDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+        
         public bool FindUserByNameAndPassword(UserModel user)
         {
             bool success = false;
@@ -124,11 +125,12 @@ namespace ProjektZawody.Services
         public UserModel GetUser(int id)
         {
             UserModel user = null;
-            string sqlStatement = "SELECT * FROM dbo.AllUsers WHERE Id = @id";
+            //string sqlStatement = "SELECT * FROM dbo.AllUsers WHERE Id = @id";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand command = new SqlCommand(sqlStatement, connection);
-                command.Parameters.Add("@id", System.Data.SqlDbType.VarChar, 40).Value = id;
+                SqlCommand command = new SqlCommand("getUserById", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = id;
 
                 try
                 {
@@ -158,11 +160,12 @@ namespace ProjektZawody.Services
 
         public void DeleteUser(int id)
         {
-            string sqlStatement = "DELETE FROM dbo.AllUsers WHERE Id = @id";
+            //string sqlStatement = "DELETE FROM dbo.AllUsers WHERE Id = @id";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand command = new SqlCommand(sqlStatement, connection);
-                command.Parameters.Add("@id", System.Data.SqlDbType.VarChar, 40).Value = id;
+                SqlCommand command = new SqlCommand("deleteUserById", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = id;
 
                 try
                 {

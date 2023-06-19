@@ -10,7 +10,7 @@
                     <th>@Html.DisplayNameFor(model=>model.First().UserName)</th>
                     <th>@Html.DisplayNameFor(model=>model.First().Password)</th>
                     <th>@Html.DisplayNameFor(model=>model.First().Role)</th>
-                    <th>Actions</th>
+                    <th>Akcje</th>
                 </tr>
             </thead>
 
@@ -19,16 +19,16 @@
                 {
                     <tr>
                         <td class="align_middle">
-                            @Html.DisplayFor(modelItem=>item.UserName);
+                            @Html.DisplayFor(modelItem=>item.UserName)
                         </td>
                         <td class="align_middle">
-                            @Html.DisplayFor(modelItem=>item.Password);
+                            @Html.DisplayFor(modelItem=>item.Password)
                         </td>
                         <td class="align_middle">
-                            @Html.DisplayFor(modelItem=>item.Role);
+                            @Html.DisplayFor(modelItem=>item.Role)
                         </td>
                         <td class="align_middle">
-                            <a class="btn-outline-primary" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            <a class="btn-outline-primary" asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
                         </td>
                     </tr>
 
@@ -41,9 +41,10 @@
 </div>
 
 
-<div class="text-white">
-    <a asp-controller="NewUser" asp-action="Create" class="btn btn-success">Dodaj</a>
+<div class="text-white" style="display: flex; justify-content: center;">
+    <a asp-controller="NewUser" asp-action="Create" class="btn btn-success" style="background-color: #ca8585; color: #ffffff;">Dodaj</a>
 </div>
+
 
 
 

@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Core" Version="1.6.0" />
     <PackageReference Include="FluentValidation" Version="11.5.2" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.5" />
@@ -26,6 +27,15 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\imgfiles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\imgfiles\Obrazek1.jpg" />
+    <None Include="wwwroot\imgfiles\Obrazek2.jpg" />
   </ItemGroup>
 
 </Project>

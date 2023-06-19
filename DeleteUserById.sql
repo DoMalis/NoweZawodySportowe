@@ -1,0 +1,6 @@
+﻿CREATE PROCEDURE DeleteUserById
+    @Id INT
+AS
+BEGIN
+    DELETE FROM dbo.AllUsers WHERE Id = @Id;
+END

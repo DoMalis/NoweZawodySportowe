@@ -2,10 +2,10 @@
 
 <body>
         <div class="text-center">
-            <h1 class="display-4">Witam na stronie zawodów sportowych</h1>
+            <h1 class="display-4">Witamy na stronie zawodów sportowych!!!</h1>
     @if (!User.Identity.IsAuthenticated)
     {
-            <a class="btn btn-primary" asp-controller="Login" asp-action="Index">Login</a>
+            <a class="btn btn-primary" asp-controller="Login" asp-action="Index" style="background-color: #ca8585; color: #ffffff;">Zaloguj</a>
         }
         else
         {
